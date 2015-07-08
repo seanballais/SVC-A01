@@ -7,7 +7,7 @@ namespace SVC_A01
         c_MaxAddress(255), // Max constant is 255 because this is an 8-bit CPU
         m_MemorySpace(new byte[c_MaxAddress])
     {
-        clear()
+        Clear();
     }
 
     Memory::~Memory()
@@ -18,7 +18,14 @@ namespace SVC_A01
         }
     }
 
-    const byte& Memory::Read(const bytes& p_Address)
+    void Memory::Clear()
+    {
+        for (byte i = 0; i < c_MaxAddress; ++i) {
+            m_MemorySpace[i] = 0;
+        }
+    }
+
+    const byte& Memory::Read(const byte& p_Address)
     {
         return m_MemorySpace[p_Address];
     }
